@@ -222,10 +222,13 @@ body {
 }
 
 .education-logo {
-    height: 40px;
+    max-height: 40px;
+    max-width: 100px;
     width: auto;
+    height: auto;
     opacity: 0.8;
     transition: var(--transition);
+    object-fit: contain;
 }
 
 .education-logo:hover {
@@ -242,11 +245,22 @@ body {
 }
 
 .experience-logo {
+<<<<<<< HEAD
     height: 50px;
     width: auto;
     opacity: 0.9;
     transition: var(--transition);
     border-radius: 4px;
+=======
+    max-height: 50px;
+    max-width: 120px;
+    width: auto;
+    height: auto;
+    opacity: 0.9;
+    transition: var(--transition);
+    border-radius: 4px;
+    object-fit: contain;
+>>>>>>> 1ecbcd5 (Atualiza portfólio com carrossel no card do GMUS)
 }
 
 .experience-logo:hover {
