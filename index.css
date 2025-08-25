@@ -233,6 +233,27 @@ body {
     transform: scale(1.1);
 }
 
+/* Experience section logo styles */
+.experience-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.experience-logo {
+    height: 50px;
+    width: auto;
+    opacity: 0.9;
+    transition: var(--transition);
+    border-radius: 4px;
+}
+
+.experience-logo:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
 /* Skills Section */
 .skill-item {
     margin-bottom: 2rem;
@@ -365,12 +386,16 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
 .project-logo {
     width: 30px;
     height: 30px;
     margin-right: 0.5rem;
+    border-radius: 4px;
+    object-fit: contain;
 }
 
 .project-content h4 {
@@ -607,6 +632,8 @@ body {
     transition: var(--transition);
     text-transform: uppercase;
     letter-spacing: 1px;
+    position: relative;
+    z-index: 10;
 }
 
 .btn-primary:hover {

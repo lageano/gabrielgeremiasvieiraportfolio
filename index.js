@@ -160,9 +160,12 @@ function initBackToTop() {
 function initSmoothScroll() {
     const links = document.querySelectorAll('a[href^="#"]');
     
+    console.log('Smooth scroll initialized');
     links.forEach(link => {
         link.addEventListener('click', function(e) {
+            console.log('Link clicked:', this.getAttribute('href'));
             e.preventDefault();
+            e.stopPropagation();
             
             const targetId = this.getAttribute('href');
             const targetSection = document.querySelector(targetId);
@@ -174,6 +177,10 @@ function initSmoothScroll() {
                     top: offsetTop,
                     behavior: 'smooth'
                 });
+                
+                console.log('Scrolling to:', targetId, 'at position:', offsetTop);
+            } else {
+                console.log('Target section not found:', targetId);
             }
         });
     });
@@ -315,6 +322,28 @@ document.addEventListener('DOMContentLoaded', function() {
         const firstThumb = gallery.querySelector('.thumb-image');
         if (firstThumb) {
             firstThumb.classList.add('active');
+        }
+    });
+});
+
+
+
+console.log('Smooth scroll initialized');
+links.forEach(link => {
+    link.addEventListener('click', function(e) {
+        console.log('Link clicked:', this.getAttribute('href'));
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetSection = document.querySelector(targetId);
+        
+        if (targetSection) {
+            const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
+            
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
         }
     });
 });

@@ -97,6 +97,7 @@
                 <div class="education-logos mt-3">
                   <img src="assets/uniplac-logo.png" alt="UNIPLAC" class="education-logo">
                   <img src="assets/senai-logo.png" alt="SENAI" class="education-logo">
+                  <img src="assets/prefeitura-lages-saude.png" alt="Prefeitura de Lages - Secretaria da Saúde" class="education-logo">
                 </div>
               </div>
             </div>
@@ -236,17 +237,20 @@
         </div>
         <div class="col-lg-4 mb-4">
           <div class="project-card">
-            <div class="project-image">
-              <img src="assets/fluxograma-bpa-antes.jpg" alt="Sistema GEMUS" class="img-fluid">
-              <div class="project-overlay">
-                <div class="project-links">
-                  <a href="#" class="project-link"><i class="fas fa-eye"></i></a>
-                </div>
+            <div class="project-image-gallery">
+              <div class="gallery-main">
+                <img src="assets/fluxograma-bpa-antes.jpg" alt="Fluxograma BPA Antes" class="img-fluid main-image" id="gmus-main">
+              </div>
+              <div class="gallery-thumbs">
+                <img src="assets/fluxograma-bpa-antes.jpg" alt="Fluxograma BPA Antes" class="thumb-image active" onclick="changeImage('gmus', 'assets/fluxograma-bpa-antes.jpg')">
+                <img src="assets/fluxograma-bpa-depois.jpg" alt="Fluxograma BPA Depois" class="thumb-image" onclick="changeImage('gmus', 'assets/fluxograma-bpa-depois.jpg')">
               </div>
             </div>
             <div class="project-content">
               <div class="project-header">
-                <img src="assets/gemus-logo.svg" alt="GEMUS" class="project-logo">
+                <img src="assets/gmus-logo.png" alt="GMUS" class="project-logo">
+                <img src="assets/inovadora-sistemas.jpg" alt="Inovadora Sistemas" class="project-logo">
+                <img src="assets/prefeitura-lages-saude.png" alt="Prefeitura de Lages - Secretaria da Saúde" class="project-logo">
                 <h4>Sistema GMUS</h4>
               </div>
               <p>Sistema de Gerenciamento de Faturamento BPA com correção de inconsistências e geração de arquivos.</p>
@@ -270,7 +274,11 @@
               </div>
             </div>
             <div class="project-content">
-              <h4>Integração Laboratórios</h4>
+              <div class="project-header">
+                <img src="assets/inovadora-sistemas.jpg" alt="Inovadora Sistemas" class="project-logo">
+                <img src="assets/prefeitura-lages-saude.png" alt="Prefeitura de Lages - Secretaria da Saúde" class="project-logo">
+                <h4>Integração Laboratórios</h4>
+              </div>
               <p>Sistema de integração automática entre laboratórios e sistema GMUS para resultados de exames.</p>
               <div class="project-tags">
                 <span class="tag">Integração</span>
@@ -385,8 +393,13 @@
           <div class="timeline-item">
             <div class="timeline-date">2025 - Presente</div>
             <div class="timeline-content">
-              <h4>Estagiário em Sistemas de Informação</h4>
-              <h5>Secretaria da Saúde - Lages, SC</h5>
+              <div class="experience-header">
+                <img src="assets/prefeitura-lages-saude.png" alt="Prefeitura de Lages - Secretaria da Saúde" class="experience-logo">
+                <div>
+                  <h4>Estagiário em Sistemas de Informação</h4>
+                  <h5>Secretaria da Saúde - Lages, SC</h5>
+                </div>
+              </div>
               <p>Desenvolvimento e manutenção do Sistema GMUS, projetos de IA para saúde, integração de sistemas e migração de dados. Participação em projetos estratégicos de modernização dos sistemas de saúde municipal.</p>
             </div>
           </div>
@@ -394,24 +407,28 @@
           <div class="timeline-item">
             <div class="timeline-date">Set 2022 - Abr 2025</div>
             <div class="timeline-content">
-              <h4>Técnico Operador de Rede</h4>
-              <h5>TLP Telecomunicações - São José, SC</h5>
-              <p>Instalação de fibras ópticas, passagem e fusão, FTTx, GPON, BONE, B2B e infraestrutura de rede estruturada. Manutenções preventivas e corretivas, mantendo a rede de fibra óptica disponível para empresas.</p>
-              <div class="company-logo">
-                <img src="assets/tlp-logo.png" alt="TLP Telecomunicações" class="img-fluid">
+              <div class="experience-header">
+                <img src="assets/tlp-logo.png" alt="TLP Telecomunicações" class="experience-logo">
+                <div>
+                  <h4>Técnico Operador de Rede</h4>
+                  <h5>TLP Telecomunicações - São José, SC</h5>
+                </div>
               </div>
+              <p>Instalação de fibras ópticas, passagem e fusão, FTTx, GPON, BONE, B2B e infraestrutura de rede estruturada. Manutenções preventivas e corretivas, mantendo a rede de fibra óptica disponível para empresas.</p>
             </div>
           </div>
           
           <!-- Referência -->
           <div class="timeline-item">
             <div class="timeline-content">
-              <h4>Referência Profissional</h4>
-              <h5>Alexandre Poroski</h5>
-              <p>Polícia Civil de Santa Catarina - Lages, SC</p>
-              <div class="company-logo">
-                <img src="assets/policia-civil-sc.png" alt="Polícia Civil SC" class="img-fluid" style="max-width: 80px;">
+              <div class="experience-header">
+                <img src="assets/policia-civil-sc.png" alt="Polícia Civil SC" class="experience-logo">
+                <div>
+                  <h4>Referência Profissional</h4>
+                  <h5>Alexandre Poroski</h5>
+                </div>
               </div>
+              <p>Polícia Civil de Santa Catarina - Lages, SC</p>
             </div>
           </div>
         </div>
@@ -422,24 +439,28 @@
           <div class="timeline-item">
             <div class="timeline-date">Jul 2025 - Dez 2028</div>
             <div class="timeline-content">
-              <h4>Sistemas de Informação</h4>
-              <h5>UNIPLAC - Universidade do Planalto Catarinense</h5>
-              <p>Graduação em Sistemas de Informação com foco em desenvolvimento de software, análise de sistemas e gestão de projetos tecnológicos.</p>
-              <div class="company-logo">
-                <img src="assets/uniplac-logo.png" alt="UNIPLAC" class="img-fluid">
+              <div class="experience-header">
+                <img src="assets/uniplac-logo.png" alt="UNIPLAC" class="experience-logo">
+                <div>
+                  <h4>Sistemas de Informação</h4>
+                  <h5>UNIPLAC - Universidade do Planalto Catarinense</h5>
+                </div>
               </div>
+              <p>Graduação em Sistemas de Informação com foco em desenvolvimento de software, análise de sistemas e gestão de projetos tecnológicos.</p>
             </div>
           </div>
           
           <div class="timeline-item">
             <div class="timeline-date">Jan 2024 - Out 2025</div>
             <div class="timeline-content">
-              <h4>Técnico em Desenvolvimento de Sistemas</h4>
-              <h5>SENAI - Lages, SC</h5>
-              <p>Curso técnico focado em desenvolvimento full-stack, programação orientada a objetos, banco de dados e metodologias ágeis.</p>
-              <div class="company-logo">
-                <img src="assets/senai-logo.png" alt="SENAI" class="img-fluid">
+              <div class="experience-header">
+                <img src="assets/senai-logo.png" alt="SENAI" class="experience-logo">
+                <div>
+                  <h4>Técnico em Desenvolvimento de Sistemas</h4>
+                  <h5>SENAI - Lages, SC</h5>
+                </div>
               </div>
+              <p>Curso técnico focado em desenvolvimento full-stack, programação orientada a objetos, banco de dados e metodologias ágeis.</p>
             </div>
           </div>
         </div>
@@ -568,6 +589,21 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
   <script src="./index.js"></script>
+  <script>
+    // Rolagem suave para o botão Saiba Mais
+    document.addEventListener('DOMContentLoaded', function() {
+      var saibaMaisBtn = document.querySelector('a[href="#sobre"].btn.btn-primary.btn-lg');
+      if (saibaMaisBtn) {
+        saibaMaisBtn.addEventListener('click', function(e) {
+          var sobreSection = document.getElementById('sobre');
+          if (sobreSection) {
+            e.preventDefault();
+            sobreSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>
 
