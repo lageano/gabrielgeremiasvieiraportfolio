@@ -348,3 +348,79 @@ links.forEach(link => {
     });
 });
 
+
+// GIF Modal Functions
+function openGifModal(gifSrc) {
+    const modal = document.getElementById('gifModal');
+    const modalImage = document.getElementById('gifModalImage');
+    
+    if (modal && modalImage) {
+        modalImage.src = gifSrc;
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+}
+
+function closeGifModal() {
+    const modal = document.getElementById('gifModal');
+    
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Restore scrolling
+    }
+}
+
+// Close modal when clicking outside the image
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('gifModal');
+    
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeGifModal();
+            }
+        });
+    }
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeGifModal();
+        }
+    });
+});
+
+
+// Função para abrir modal de imagens
+function openImageModal(imageSrc, imageAlt) {
+    // Reutilizar o modal do GIF para imagens
+    const modal = document.getElementById('gifModal');
+    const modalImage = document.getElementById('gifModalImage');
+    
+    if (modal && modalImage) {
+        modalImage.src = imageSrc;
+        modalImage.alt = imageAlt || 'Imagem ampliada';
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    }
+}
+
+// Adicionar indicação visual para imagens clicáveis
+document.addEventListener('DOMContentLoaded', function() {
+    const clickableImages = document.querySelectorAll('[ondblclick*="openImageModal"]');
+    
+    clickableImages.forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.title = 'Clique duplo para ampliar';
+        
+        // Adicionar efeito hover
+        img.addEventListener('mouseenter', function() {
+            this.style.opacity = '0.8';
+        });
+        
+        img.addEventListener('mouseleave', function() {
+            this.style.opacity = '1';
+        });
+    });
+});
+
