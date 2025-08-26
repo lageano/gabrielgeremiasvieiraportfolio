@@ -286,13 +286,6 @@ body {
 }
 
 .experience-logo {
-<<<<<<< HEAD
-    height: 50px;
-    width: auto;
-    opacity: 0.9;
-    transition: var(--transition);
-    border-radius: 4px;
-=======
     max-height: 50px;
     max-width: 120px;
     width: auto;
@@ -301,7 +294,6 @@ body {
     transition: var(--transition);
     border-radius: 4px;
     object-fit: contain;
->>>>>>> 1ecbcd5 (Atualiza portfólio com carrossel no card do GMUS)
 }
 
 .experience-logo:hover {
