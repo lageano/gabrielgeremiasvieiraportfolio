@@ -1,0 +1,65 @@
+<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <!-- Fundo com gradiente cinza claro -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f5f5f5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e0e0e0;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="hairGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#87CEEB;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4682B4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="visorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#C0C0C0;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#A0A0A0;stop-opacity:0.8" />
+    </linearGradient>
+    <linearGradient id="clothesGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E6E6FA;stop-opacity:0.7" />
+      <stop offset="50%" style="stop-color:#DDA0DD;stop-opacity:0.7" />
+      <stop offset="100%" style="stop-color:#E6E6FA;stop-opacity:0.7" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Círculo de fundo com halo -->
+  <circle cx="20" cy="20" r="19" fill="url(#bgGradient)" stroke="#fff" stroke-width="1"/>
+  <circle cx="20" cy="20" r="16" fill="none" stroke="#fff" stroke-width="2" opacity="0.3"/>
+  
+  <!-- Roupas iridescentes (parte superior) -->
+  <ellipse cx="20" cy="25" rx="12" ry="8" fill="url(#clothesGradient)" opacity="0.8"/>
+  
+  <!-- Cabeça/rosto -->
+  <ellipse cx="20" cy="18" rx="8" ry="10" fill="#fff" opacity="0.95"/>
+  
+  <!-- Cabelo azul claro em bob cut -->
+  <path d="M12 12 Q20 8 28 12 Q26 16 24 18 Q22 20 20 20 Q18 20 16 18 Q14 16 12 12" fill="url(#hairGradient)"/>
+  
+  <!-- Visor futurista transparente -->
+  <ellipse cx="20" cy="18" rx="7" ry="8" fill="none" stroke="url(#visorGradient)" stroke-width="2" opacity="0.9"/>
+  <ellipse cx="20" cy="18" rx="5" ry="6" fill="none" stroke="#fff" stroke-width="1" opacity="0.7"/>
+  
+  <!-- Estrutura metálica do headset -->
+  <path d="M13 15 L13 12 Q20 10 27 12 L27 15" stroke="url(#visorGradient)" stroke-width="1.5" fill="none" opacity="0.8"/>
+  
+  <!-- Olhos azuis com sombra roxa -->
+  <circle cx="17" cy="16" r="1.8" fill="#87CEEB"/>
+  <circle cx="23" cy="16" r="1.8" fill="#87CEEB"/>
+  <circle cx="17" cy="16" r="0.8" fill="#fff" opacity="0.9"/>
+  <circle cx="23" cy="16" r="0.8" fill="#fff" opacity="0.9"/>
+  
+  <!-- Sombra roxa nos olhos -->
+  <ellipse cx="17" cy="17.5" rx="2" ry="1" fill="#DDA0DD" opacity="0.4"/>
+  <ellipse cx="23" cy="17.5" rx="2" ry="1" fill="#DDA0DD" opacity="0.4"/>
+  
+  <!-- Boca suave -->
+  <ellipse cx="20" cy="20" rx="1.5" ry="0.8" fill="#FFB6C1" opacity="0.8"/>
+  
+  <!-- Colar metálico -->
+  <path d="M15 26 L25 26" stroke="url(#visorGradient)" stroke-width="2" opacity="0.9"/>
+  <circle cx="15" cy="26" r="1" fill="url(#visorGradient)" opacity="0.8"/>
+  <circle cx="25" cy="26" r="1" fill="url(#visorGradient)" opacity="0.8"/>
+  
+  <!-- Símbolos de IA (circuitos) -->
+  <path d="M16 32 L24 32 M20 29 L20 35" stroke="#fff" stroke-width="1" opacity="0.6"/>
+  <circle cx="16" cy="32" r="0.8" fill="#fff" opacity="0.5"/>
+  <circle cx="24" cy="32" r="0.8" fill="#fff" opacity="0.5"/>
+</svg>
