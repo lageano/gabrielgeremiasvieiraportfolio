@@ -33,7 +33,7 @@ Aqui você encontra os principais projetos e trabalhos que desenvolvi nas áreas
 
 <img width="1848" height="795" alt="image" src="https://github.com/user-attachments/assets/57656677-772a-4c75-93a9-db31cc7bc42e" />
 aqui um dos meus projetos em andamento de jogo 
-site : http://allianceserver.servebeer.com/?news
+site : http://allianceserver.com.br
 <img width="1839" height="870" alt="image" src="https://github.com/user-attachments/assets/1c8f4030-0b7c-4a5a-b8d1-382246a09e93" />
 jogo cliente .exe
 <img width="996" height="786" alt="image" src="https://github.com/user-attachments/assets/e4561812-4a13-4093-a33c-ce4af1655f93" />
