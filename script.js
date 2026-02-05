@@ -589,35 +589,70 @@ document.addEventListener('keydown', function(e) {
 
 // Back to Top Button functionality
 document.addEventListener('DOMContentLoaded', function() {
-    const backToTopBtn = document.querySelector('.back-to-top-btn');
+    const backToTopBtn = document.getElementById('floatingTopBtn');
     
     if (backToTopBtn) {
         window.addEventListener('scroll', function() {
             if (window.scrollY > 300) {
-                backToTopBtn.classList.add('show');
+                backToTopBtn.classList.add('visible');
             } else {
-                backToTopBtn.classList.remove('show');
+                backToTopBtn.classList.remove('visible');
             }
         });
         
         backToTopBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            smoothScrollTo(0, 1000);
+            window.scrollTo({top: 0, behavior: 'smooth'});
         });
     }
 });
 
 /* ============================================================
-   ALLIANCE SERVER CUSTOM GALLERY LOGIC - TOTALMENTE ISOLADO
+   UNIVERSAL GALLERY & LIGHTBOX LOGIC (ESTILO ALLIANCE)
    ============================================================ */
-let allianceCurrentIndex = 0;
-const allianceImages = [];
-for(let i=1; i<=39; i++) {
-    allianceImages.push(`assets/fotos/projetos-particulares/alliance-server/alliance_${i}.jpeg`);
-}
+const galleryData = {
+    'alliance': {
+        images: Array.from({length: 39}, (_, i) => `assets/fotos/projetos-particulares/alliance-server/alliance_${i+1}.jpeg`),
+        currentIndex: 0
+    },
+    'gmus': {
+        images: ['assets/fluxograma-bpa-antes.jpg', 'assets/fluxograma-bpa-depois.jpg'],
+        currentIndex: 0
+    },
+    'iot': {
+        images: ['assets/baterialediot.png', 'assets/projetoiot.png', 'assets/sistemaiot.png', 'assets/codigoesp321.png', 'assets/fotoesp321.png', 'assets/codigoes322.png'],
+        currentIndex: 0
+    },
+    'ghosttrack': {
+        images: [
+            'assets/fotos/trabalhos-academicos/ghosttrack/pasted_file_3V6cNJ_image.png',
+            'assets/fotos/trabalhos-academicos/ghosttrack/pasted_file_MSxC23_image.png',
+            'assets/fotos/trabalhos-academicos/ghosttrack/pasted_file_lZU8kd_image.png',
+            'assets/fotos/trabalhos-academicos/ghosttrack/pasted_file_GM1h0M_image.png',
+            'assets/fotos/trabalhos-academicos/ghosttrack/pasted_file_LsRqS9_image.png',
+            'assets/fotos/trabalhos-academicos/ghosttrack/pasted_file_grHipJ_image.png',
+            'assets/fotos/trabalhos-academicos/ghosttrack/pasted_file_EEv6Zr_image.png'
+        ],
+        currentIndex: 0
+    },
+    'locadora': {
+        images: ['assets/locadora-1.webp', 'assets/locadora-2.webp', 'assets/locadora-3.webp'],
+        currentIndex: 0
+    },
+    'mercado': {
+        images: ['assets/mercado-1.webp', 'assets/mercado-2.webp', 'assets/mercado-3.webp'],
+        currentIndex: 0
+    },
+    'lab': {
+        images: ['assets/fluxograma-laboratorios.jpg'],
+        currentIndex: 0
+    }
+};
 
-function changeAllianceImage(element, src) {
-    const mainImg = document.getElementById('alliance-main-img');
+let currentUniversalGallery = 'alliance';
+
+function changeUniversalImage(galleryId, element, src) {
+    const mainImg = document.getElementById(`${galleryId}-main-img`);
     if(!mainImg) return;
     
     mainImg.style.opacity = '0';
@@ -627,40 +662,43 @@ function changeAllianceImage(element, src) {
     }, 200);
 
     // Update active thumb
-    document.querySelectorAll('.alliance-thumb-item').forEach(img => img.classList.remove('active'));
-    element.classList.add('active');
+    const track = document.getElementById(`${galleryId}-track`);
+    if(track) {
+        track.querySelectorAll('.alliance-thumb-item').forEach(img => img.classList.remove('active'));
+        element.classList.add('active');
+    }
 
-    // Update index for lightbox
-    allianceCurrentIndex = allianceImages.indexOf(src);
-    updateAllianceProgress();
+    // Update index
+    if(galleryData[galleryId]) {
+        galleryData[galleryId].currentIndex = galleryData[galleryId].images.indexOf(src);
+    }
 }
 
-function scrollAllianceCarousel(direction) {
-    const track = document.getElementById('alliance-track');
+function scrollUniversalCarousel(galleryId, direction) {
+    const track = document.getElementById(`${galleryId}-track`);
     if(!track) return;
     const scrollAmount = 200;
     track.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
 }
 
-function updateAllianceProgress() {
-    const progress = document.getElementById('alliance-progress');
-    if(!progress) return;
-    const percentage = ((allianceCurrentIndex + 1) / allianceImages.length) * 100;
-    progress.style.width = percentage + '%';
-}
-
-// Lightbox Logic
-function openAllianceLightbox() {
+function openUniversalLightbox(galleryId) {
+    currentUniversalGallery = galleryId;
+    const data = galleryData[galleryId];
     const modal = document.getElementById('allianceLightbox');
     const lightboxImg = document.getElementById('allianceLightboxImg');
     const caption = document.getElementById('allianceLightboxCaption');
     
-    if(!modal || !lightboxImg) return;
+    if(!modal || !lightboxImg || !data) return;
     
     modal.style.display = 'flex';
-    lightboxImg.src = allianceImages[allianceCurrentIndex];
-    caption.innerText = `Imagem ${allianceCurrentIndex + 1} de ${allianceImages.length}`;
+    lightboxImg.src = data.images[data.currentIndex];
+    caption.innerText = `Imagem ${data.currentIndex + 1} de ${data.images.length}`;
 }
+
+// Mantendo compatibilidade com o botão do Alliance original
+function openAllianceLightbox() { openUniversalLightbox('alliance'); }
+function changeAllianceImage(el, src) { changeUniversalImage('alliance', el, src); }
+function scrollAllianceCarousel(dir) { scrollUniversalCarousel('alliance', dir); }
 
 function closeAllianceLightbox() {
     const modal = document.getElementById('allianceLightbox');
@@ -668,27 +706,31 @@ function closeAllianceLightbox() {
 }
 
 function changeAllianceLightboxImage(direction) {
-    allianceCurrentIndex += direction;
-    if (allianceCurrentIndex >= allianceImages.length) allianceCurrentIndex = 0;
-    if (allianceCurrentIndex < 0) allianceCurrentIndex = allianceImages.length - 1;
+    const data = galleryData[currentUniversalGallery];
+    if(!data) return;
+
+    data.currentIndex += direction;
+    if (data.currentIndex >= data.images.length) data.currentIndex = 0;
+    if (data.currentIndex < 0) data.currentIndex = data.images.length - 1;
     
     const lightboxImg = document.getElementById('allianceLightboxImg');
     const caption = document.getElementById('allianceLightboxCaption');
     
-    if(lightboxImg) lightboxImg.src = allianceImages[allianceCurrentIndex];
-    if(caption) caption.innerText = `Imagem ${allianceCurrentIndex + 1} de ${allianceImages.length}`;
+    if(lightboxImg) lightboxImg.src = data.images[data.currentIndex];
+    if(caption) caption.innerText = `Imagem ${data.currentIndex + 1} de ${data.images.length}`;
     
     // Sync main view and carousel
-    const thumbs = document.querySelectorAll('.alliance-thumb-item');
-    if(thumbs[allianceCurrentIndex]) {
-        const mainImg = document.getElementById('alliance-main-img');
-        if(mainImg) mainImg.src = allianceImages[allianceCurrentIndex];
-        
-        document.querySelectorAll('.alliance-thumb-item').forEach(img => img.classList.remove('active'));
-        thumbs[allianceCurrentIndex].classList.add('active');
-        
-        thumbs[allianceCurrentIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-        updateAllianceProgress();
+    const mainImg = document.getElementById(`${currentUniversalGallery}-main-img`);
+    if(mainImg) mainImg.src = data.images[data.currentIndex];
+
+    const track = document.getElementById(`${currentUniversalGallery}-track`);
+    if(track) {
+        const thumbs = track.querySelectorAll('.alliance-thumb-item');
+        thumbs.forEach(img => img.classList.remove('active'));
+        if(thumbs[data.currentIndex]) {
+            thumbs[data.currentIndex].classList.add('active');
+            thumbs[data.currentIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
     }
 }
 
@@ -707,3 +749,150 @@ window.addEventListener('keydown', (e) => {
     }
 });
 
+
+/* ============================================================
+   FLOATING CONTACT BUTTON
+   ============================================================ */
+function toggleFloatingMenu() {
+    const menu = document.getElementById('floatingContactMenu');
+    const btn = document.getElementById('floatingContactBtn');
+    
+    if (menu && btn) {
+        menu.classList.toggle('active');
+        btn.classList.toggle('active');
+    }
+}
+
+
+
+// Close floating menu when clicking outside
+document.addEventListener('click', function(e) {
+    const menu = document.getElementById('floatingContactMenu');
+    const btn = document.getElementById('floatingContactBtn');
+    const container = document.querySelector('.floating-contact-container');
+    
+    if (menu && btn && container) {
+        if (!container.contains(e.target) && menu.classList.contains('active')) {
+            menu.classList.remove('active');
+            btn.classList.remove('active');
+        }
+    }
+});
+
+/* ============================================================
+   IMAGE MODAL FOR PROJECT GALLERIES
+   ============================================================ */
+function openImageModal(imageSrc) {
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('imageModalImg');
+    
+    if (modal && modalImg) {
+        modal.style.display = 'block';
+        modalImg.src = imageSrc;
+    }
+}
+
+function closeImageModal() {
+    const modal = document.getElementById('imageModal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// Close modal when clicking outside the image
+window.addEventListener('click', function(e) {
+    const modal = document.getElementById('imageModal');
+    if (e.target === modal) {
+        closeImageModal();
+    }
+});
+
+// Close modal with ESC key
+window.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeImageModal();
+    }
+});
+
+/* --- Lógica do Carrossel de Projetos --- */
+function moveCarousel(carouselId, direction) {
+    const container = document.getElementById('carousel-' + carouselId);
+    if (!container) return;
+    
+    const itemWidth = container.querySelector('.carousel-item-custom').offsetWidth + 20; // width + gap
+    const scrollAmount = itemWidth * direction;
+    
+    container.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth'
+    });
+}
+
+/* --- Lógica do Botão Ver Mais --- */
+function initReadMore() {
+    const descriptions = document.querySelectorAll('.project-description');
+    
+    descriptions.forEach(desc => {
+        const card = desc.closest('.project-card');
+        if (!card) return;
+
+        // Sempre adiciona o botão para manter o padrão visual, 
+        // ou verifica se o conteúdo realmente transborda
+        const btn = document.createElement('button');
+        btn.className = 'read-more-btn';
+        btn.innerHTML = 'Ver mais...';
+        
+        btn.onclick = function() {
+            if (card.classList.contains('expanded')) {
+                card.classList.remove('expanded');
+                desc.classList.remove('expanded');
+                btn.innerHTML = 'Ver mais...';
+                // Scroll suave de volta para o topo do card
+                card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            } else {
+                card.classList.add('expanded');
+                desc.classList.add('expanded');
+                btn.innerHTML = 'Ver menos';
+            }
+        };
+        
+        desc.after(btn);
+    });
+}
+
+// Inicializa a função Ver Mais quando o DOM estiver pronto
+document.addEventListener('DOMContentLoaded', function() {
+    initReadMore();
+});
+
+/* --- Lógica de Expansão de Habilidades --- */
+function toggleExtraSkills() {
+    const extraSkills = document.getElementById('extra-skills');
+    const btn = document.getElementById('toggle-skills-btn');
+    
+    if (extraSkills.style.display === 'none') {
+        extraSkills.style.display = 'flex';
+        btn.innerHTML = 'Ver menos';
+        
+        // Trigger animation for the newly visible skill bars and advanced cards
+        const newSkillBars = extraSkills.querySelectorAll('.skill-item');
+        newSkillBars.forEach(item => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+            animateSkillBar(item);
+        });
+        
+        const advancedCards = extraSkills.querySelectorAll('.advanced-skill-card');
+        advancedCards.forEach((card, index) => {
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 150);
+        });
+    } else {
+        extraSkills.style.display = 'none';
+        btn.innerHTML = 'Ver mais habilidades...';
+        // Scroll back to the skills section start
+        document.getElementById('skills').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
